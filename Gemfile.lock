@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     arel (3.0.3)
+    bootstrap-sass (2.1.0.0)
     builder (3.0.4)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -50,6 +51,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    gmaps4rails (2.1.2)
     hike (1.2.3)
     i18n (0.7.0)
     journey (1.0.4)
@@ -140,8 +142,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 2.1)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
+  gmaps4rails (~> 2.1, >= 2.1.2)
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   rails (= 3.2.16)
