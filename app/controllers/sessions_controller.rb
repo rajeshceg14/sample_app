@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     sign_out
     puts "SIGN OUT DONE"
     redirect_to root_url
+    #redirect_to 'sign_in'
     #render 'new'
   end
 
