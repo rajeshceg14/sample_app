@@ -16,8 +16,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+  	puts "SIGN OUT DESTROY CALLED"
     sign_out
+    puts "SIGN OUT DONE"
     redirect_to root_url
+    #render 'new'
   end
 
 end
