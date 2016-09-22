@@ -1,7 +1,32 @@
 module SessionsHelper
    def sign_in(user)
-    cookies.permanent[:remember_token] = user.remember_token
-    self.current_user = user
+    if self.current_user == nil
+   		puts "SIGNING IN................."           
+	    cookies.permanent[:remember_token] = user.remember_token
+	    self.current_user = user
+	    return "false"
+	else
+		puts " SIGNED IN "
+		flash[:error] = "Already signed in as  #{self.current_user.name}. SIGN OUT FIRST"
+		return "true"
+	end
+  end
+
+  def get_current_session_user
+    return self.current_user
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url
   end
 
   def current_user=(user)
@@ -13,7 +38,7 @@ module SessionsHelper
   end
 
   def signed_in?
-    !current_user.nil?
+  	!current_user.nil?
   end
 
   def sign_out
