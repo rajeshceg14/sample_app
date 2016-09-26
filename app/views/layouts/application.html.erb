@@ -9,14 +9,18 @@
     <![endif]-->
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top navbar-inverse">       
       <div class="navbar-inner">
         <div class="container">
           <!--<%= link_to "sample app", "#", id: "logo" %>-->
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home", home_path  %></li>
-              <li><%= link_to "Sign in", signin_path %></li>
+              <% if !signed_in? %>
+                <li><%= link_to "Sign in", signin_path %></li>
+              <% else %>                            
+                <li><%= link_to "Sign out", signout_path , method: "delete" %></li>
+              <% end %>
               <li><%= link_to "All Users", users_index_path %></li>
             </ul>
           </nav>
