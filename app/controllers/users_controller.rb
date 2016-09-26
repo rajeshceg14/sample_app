@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :admin_user_func, only: :destroy
+
 
   def show
     @user = User.find(params[:id])
@@ -62,6 +64,13 @@ class UsersController < ApplicationController
   end
 
 
+  def destroy
+    puts "DESTROY USER FUNC CALLED"
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
   private
 
     def get_current_user
@@ -70,7 +79,7 @@ class UsersController < ApplicationController
 
 
     def signed_in_user
-      unless signed_in?
+      unless signed_in?        
         store_location
         redirect_to signin_url, notice: "Please sign in."
       end
@@ -80,5 +89,13 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+
+    def admin_user_func      
+      puts "ADMIN USER FUNC CALLED"
+      #puts #{current_user.admin_user}
+      redirect_to(root_url) unless current_user.admin? 
+    end
+
+
 
 end

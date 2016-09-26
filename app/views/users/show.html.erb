@@ -13,9 +13,10 @@
   </aside>
 </div>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-
+  <!--  <p>New user? <%= link_to "Sign up now!", signup_path %></p>  -->
+<%if current_user?(@user) %> 
 <p>SIGN OUT <%= link_to "Sign out", signout_path, method: "delete" %> </p>
+<%end%>
 
 <!--
 <h1>
