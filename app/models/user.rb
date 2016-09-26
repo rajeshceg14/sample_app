@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :microposts, dependent: :destroy
+
   private
   	def create_remember_token
   		self.remember_token = SecureRandom.urlsafe_base64
