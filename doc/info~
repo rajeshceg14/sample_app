@@ -1,0 +1,8 @@
+
+1.
+Paperclip adds timestamp to default url
+
+http://stackoverflow.com/questions/3710829/paperclip-image-url
+
+
+Paperclip::Attachment.default_options[:use_timestamp] = false
