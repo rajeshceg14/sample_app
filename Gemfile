@@ -16,7 +16,10 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
-
+gem "paperclip", "~> 2.3"
+#gem 'exif', '~> 1.0', '>= 1.0.1'
+gem 'exifr'
+gem 'debugger'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

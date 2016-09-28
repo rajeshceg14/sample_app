@@ -22,7 +22,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum:6 }
   validates :password_confirmation, presence: true
 
+  has_many :photos, dependent: :destroy
+  # accepts_nested_attributes_for :photos
   has_secure_password
+  
 
   private
   	def create_remember_token

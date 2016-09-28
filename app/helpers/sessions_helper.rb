@@ -7,7 +7,7 @@ module SessionsHelper
 	    return "false"
 	else
 		puts " SIGNED IN "
-		flash[:error] = "Already signed in as  #{self.current_user.name}. SIGN OUT FIRST"
+		#flash[:error] = "Already signed in as  #{self.current_user.name}."
 		return "true"
 	end
   end
@@ -18,6 +18,13 @@ module SessionsHelper
 
   def current_user?(user)
     user == current_user
+  end
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
   end
 
   def redirect_back_or(default)

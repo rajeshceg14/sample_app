@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @photos = @user.photos.paginate(page: params[:page], per_page: 4)
+    @photo = @user.photos.new
+    
   end
 
 
@@ -47,6 +50,13 @@ class UsersController < ApplicationController
   end
 
 
+  def create
+    photo = current_user.photos.new(params[:photo])
+    photo.save!
+  end
+
+  
+
   def update    
     @user = User.find(params[:id])
     puts "USER CONTROLLER UPDATE CALLED"
@@ -78,13 +88,6 @@ class UsersController < ApplicationController
     end
 
 
-    def signed_in_user
-      unless signed_in?        
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
-      end
-    end
-
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
@@ -93,9 +96,13 @@ class UsersController < ApplicationController
     def admin_user_func      
       puts "ADMIN USER FUNC CALLED"
       #puts #{current_user.admin_user}
-      redirect_to(root_url) unless current_user.admin? 
+      redirect_to(root_url) #unless current_user.admin? 
     end
-
-
+    
+  # Use strong_parameters for attribute whitelisting
+  # Be sure to update your create() and update() controller methods.
+  def user_params
+    params.require(:user).permit(:avatar)
+  end
 
 end
