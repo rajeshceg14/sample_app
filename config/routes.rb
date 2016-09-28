@@ -20,7 +20,7 @@ SampleApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete  
   match 'users_index', to: 'users#index'
-  #match 'photo_map', to: 'photos#map_show'
+  match '/photo_map', to: 'photos#map_show', via: :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

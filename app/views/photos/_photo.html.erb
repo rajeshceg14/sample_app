@@ -1,20 +1,24 @@
-<li>
-  <span class="content"><%= image_tag(photo.image.url(:thumb), :alt => "Can't fetch photo") %></span>
-  <span class="timestamp">
-    Uploaded <%= time_ago_in_words(photo.created_at) %> ago.
+<li> 
+
+  <span class="content">
+    <%= image_tag(photo.image.url(:thumb), :alt =>"Can't fetch photo") %>   
   </span>
-  <p>  
-  <% if current_user?(photo.user) %>
-    <%= link_to "delete", photo, method: :delete,
-                                     data: { confirm: "You sure?" }
-                                     %>
-  <% end %>
-  ,  
-  <!--  <p><%=Rails.root.to_s%> "/public" <%=photo.image.url(:original, timestamp: false)%></p> -->
-  <% if EXIFR::JPEG.new(Rails.root.to_s + "/public" +photo.image.url(:original, timestamp: false)).gps != nil%>
-      <%= link_to "map", photo %>
-  <%end%>
-  </p>
-  
+
+  <span class="timestamp">  
+    Uploaded <%=time_ago_in_words(photo.created_at) %> ago.   
+  </span>
+  <p>     
+    <% if current_user?(photo.user) %>     <%= link_to "delete", photo, method: :delete,
+                                                                        data: { confirm: "You sure?" }%> 
+  <%end %>,
+       <!--  <p><%=Rails.root.to_s%> "/public"<%=photo.image.url(:original, timestamp: false)%></p> -->  
+
+ <% exif =EXIFR::JPEG.new(Rails.root.to_s + "/public" +photo.image.url(:original,timestamp: false)).gps%> 
+    <% if  exif != nil%>  
+        <%= link_to "map", photo_map_path(:id => photo.id), remote: true  %>       
+        <p>LAT =<%=exif.latitude%>   LONG=<%=exif.longitude%></p>   
+    <%end%>   
+
+  </p>  
   <br><br>
 </li>

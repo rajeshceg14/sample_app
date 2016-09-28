@@ -25,8 +25,12 @@ class PhotosController < ApplicationController
     end  	
   end
 
-  def map_show
-      
+  def map_show      
+      @photo = current_user.photos.find(params[:id])
+      @exif =EXIFR::JPEG.new(Rails.root.to_s + "/public" +@photo.image.url(:original,timestamp: false)).gps        
+      @lat= @exif.latitude
+      @long=@exif.longitude
+      puts "#{@lat}    #{@long}"
   end
 
   def destroy
