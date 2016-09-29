@@ -51,10 +51,7 @@ class UsersController < ApplicationController
   end
 
 
-  def create
-    photo = current_user.photos.new(params[:photo])
-    photo.save!
-  end
+  
 
   
 
