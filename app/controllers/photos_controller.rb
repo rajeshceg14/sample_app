@@ -7,22 +7,27 @@ class PhotosController < ApplicationController
 #    photo.save!
 #  end
 
-  def create  	    
-  	@photo = current_user.photos.new
-    if params[:photo] == nil
-      flash[:error] = "Select a photo"      
-      redirect_to current_user
-    end
-    @photo.image = params[:photo][:image]
-      	
-  	if @photo.save
-      flash[:success] = "Photo upload success!"      
-      redirect_to current_user
+  def create  	        
+  	@photo = current_user.photos.new  
+    puts "PARAMS PHOTO = #{params[:photo]}"
+    if params[:photo].blank?
+       flash[:notice] = "Select a photo"      
+       redirect_to current_user
     else
-      puts " UPLOAD FAILED  #{@photo.errors.full_messages}"
-      flash[:error] = "Photo upload failed"      
-      redirect_to current_user
-    end  	
+    	if @photo.save
+        flash[:notice] = "Photo upload success!"      
+        redirect_to current_user
+      else        
+        puts " UPLOAD FAILED  #{@photo.errors.full_messages}  img content type = #{@photo.errors[:image_content_type]}"
+        debugger
+        if @photo.errors[:image_content_type] != nil        
+          flash[:notice] = "Plz Upload an image"
+        else
+          flash[:notice] = "Photo upload failed"          
+        end
+        redirect_to current_user
+      end  	
+    end
   end
 
   def map_show      

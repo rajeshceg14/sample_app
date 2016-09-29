@@ -4,7 +4,7 @@ function initMap(lat, lng) {
 
 	var mapOptions = {
 	  center: new google.maps.LatLng(0,0),
-	  zoom: 10
+	  zoom: 2
 	};
 
 
@@ -26,7 +26,7 @@ function initMap(lat, lng) {
 	  ]);		  
 	  handler.map.centerOn([lat,lng]);	  
 	  handler.bounds.extendWith(markers);
-	  handler.getMap().setZoom(10);
+	  handler.getMap().setZoom(9);
 	});
 }
 

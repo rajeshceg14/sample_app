@@ -15,8 +15,9 @@
   <%= form_for @photo, :html => { :multipart => true } do |f| %>    
     <p>
       <b> Upload Picture </b>
-      <%= f.file_field :image, as: :file %>
+      <%= f.file_field :image, as: :file  %>
     </p>
+    
     <%= f.submit %>
   <%end%>
 <%end%>
@@ -35,7 +36,7 @@
     <%end%>
 </div>
 
-<div style='width: 800px;'>
+<div style='width: 400px;'  class="span16">
         <div id="map" style='width: 300px; height: 500px;'></div>
 </div>
 
