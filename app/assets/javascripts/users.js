@@ -21,7 +21,7 @@ function initMap(lat, lng) {
 	        "height": 32
 
 	      },
-	      "infowindow": "hello!"
+	      "infowindow": "Your Photo was shot here"
 	    }
 	  ]);		  
 	  handler.map.centerOn([lat,lng]);	  
@@ -32,6 +32,6 @@ function initMap(lat, lng) {
 
 jQuery(document).on('ready', function() {
 	console.log( "ready!" );	
-	initMap(0,0);
+	initMap(12.9696196,80.24402269999996);
 	console.log( "Map called!" );
 });

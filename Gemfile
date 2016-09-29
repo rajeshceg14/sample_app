@@ -13,7 +13,10 @@ end
 
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'therubyracer', :platform => :ruby
 
+
+gem 'awesome_print'
 
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem "paperclip", "~> 2.3"

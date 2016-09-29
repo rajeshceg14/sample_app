@@ -2,7 +2,7 @@
 
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span4" >
     <section>
       <h1>
         <%= gravatar_for @user %>
@@ -14,8 +14,8 @@
 <% if current_user?(@user) %>
   <%= form_for @photo, :html => { :multipart => true } do |f| %>    
     <p>
-      <b> Upload Picture </b>
-      <%= f.file_field :image, as: :file  %>
+      <b> Upload Photo </b>
+      <%= f.file_field :image, as: :file, accept: 'image/png,image/gif,image/jpeg'  %>
     </p>
     
     <%= f.submit %>

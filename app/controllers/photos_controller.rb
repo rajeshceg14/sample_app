@@ -11,17 +11,18 @@ class PhotosController < ApplicationController
   	@photo = current_user.photos.new  
     puts "PARAMS PHOTO = #{params[:photo]}"
     if params[:photo].blank?
-       flash[:notice] = "Select a photo"      
+       flash[:notice] = "Photo not selected. Please select a photo"      
        redirect_to current_user
     else
+      @photo.image = params[:photo][:image]
     	if @photo.save
         flash[:notice] = "Photo upload success!"      
         redirect_to current_user
       else        
-        puts " UPLOAD FAILED  #{@photo.errors.full_messages}  img content type = #{@photo.errors[:image_content_type]}"
+        puts " UPLOAD FAILED  #{@photo.errors.full_messages}  img content type = #{@photo.errors[:image_content_type]}"        
         debugger
-        if @photo.errors[:image_content_type] != nil        
-          flash[:notice] = "Plz Upload an image"
+        if !@photo.errors[:image_content_type].blank?
+          flash[:notice] = "Plz upload image"
         else
           flash[:notice] = "Photo upload failed"          
         end

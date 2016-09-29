@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:index, :edit, :update]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :show]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user_func, only: :destroy
+
 
 
   def show
@@ -99,10 +100,14 @@ class UsersController < ApplicationController
       redirect_to(root_url) #unless current_user.admin? 
     end
     
-  # Use strong_parameters for attribute whitelisting
-  # Be sure to update your create() and update() controller methods.
-  def user_params
-    params.require(:user).permit(:avatar)
-  end
+    # Use strong_parameters for attribute whitelisting
+    # Be sure to update your create() and update() controller methods.
+    def user_params
+      params.require(:user).permit(:avatar)
+    end
+
+   
+
+
 
 end

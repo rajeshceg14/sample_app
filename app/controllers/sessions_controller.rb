@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+
+
   def new
   	 if self.current_user != nil
   	 	flash[:error] = "Already signed in as  #{self.current_user.name}. SIGN OUT FIRST"
@@ -33,4 +35,6 @@ class SessionsController < ApplicationController
     #redirect_to 'sign_in'
     #render 'new'
   end
+
+
 end
