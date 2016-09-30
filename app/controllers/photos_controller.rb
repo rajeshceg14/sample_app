@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
        redirect_to current_user
     else
       @photo.image = params[:photo][:image]
-    	if @photo.save
+      if @photo.save
         flash[:notice] = "Photo upload success!"      
         redirect_to current_user
       else        
@@ -23,20 +23,22 @@ class PhotosController < ApplicationController
         debugger
         if !@photo.errors[:image_content_type].blank?
           flash[:notice] = "Plz upload image"
+        elsif !@photo.errors[:image_file_size].blank?
+          flash[:notice] = "Photo size must be less than #{Photo::MAX_UPLOAD_SIZE} MB"
         else
           flash[:notice] = "Photo upload failed"          
         end
         redirect_to current_user
-      end  	
+      end 
     end
   end
 
   def map_show      
-      @user = User.find(params[:user])
+      @user  = User.find(params[:user])
       @photo = @user.photos.find(params[:id])
-      @exif =EXIFR::JPEG.new(Rails.root.to_s + "/public" +@photo.image.url(:original,timestamp: false)).gps        
-      @lat= @exif.latitude
-      @long=@exif.longitude
+      @exif  = EXIFR::JPEG.new(@photo.image.path).gps        
+      @lat   = @exif.latitude
+      @long  = @exif.longitude
       puts "#{@lat}    #{@long}"
   end
 

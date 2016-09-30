@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
 
       @signin_return = sign_in user
       if @signin_return == "true"
-
       	redirect_to root_url	
       else
       	redirect_back_or user		
