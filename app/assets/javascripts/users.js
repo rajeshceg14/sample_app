@@ -23,7 +23,7 @@ function initMap(lat, lng) {
 	  ]);		  
 	  handler.map.centerOn([lat,lng]);	  
 	  handler.bounds.extendWith(markers);
-	  handler.getMap().setZoom(15);
+	  handler.getMap().setZoom(1);
 	});
 }
 
