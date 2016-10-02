@@ -1,6 +1,6 @@
 
 
-function initMap(id, lat, lng) {
+function initMap(lat, lng) {
 
 	var mapOptions = {
 	  center: new google.maps.LatLng(12.96,80.244),
@@ -8,7 +8,7 @@ function initMap(id, lat, lng) {
 	};
 
 	handler = Gmaps.build('Google');
-	handler.buildMap({ provider: mapOptions, internal: {id: id}}, function(){
+	handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
 	  markers = handler.addMarkers([
 	    {
 	      "lat": lat,
@@ -29,6 +29,6 @@ function initMap(id, lat, lng) {
 
 jQuery(document).on('ready', function() {
 	console.log( "ready!" );	
-	// initMap(12.9696196,80.24402269999996);
+	initMap(12.9696196,80.24402269999996);
 	console.log( "Map called!" );
 });

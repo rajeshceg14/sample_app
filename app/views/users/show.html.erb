@@ -1,7 +1,7 @@
 <% provide(:title, @user.name + " Profile") %>
 
 <div class="row">
-  <% if false && current_user?(@user) %>
+  <% if current_user?(@user) %>
     <%= form_for @photo, :html => { :multipart => true } do |f| %>    
       <p>
         <b> Upload Photo </b>
@@ -12,7 +12,11 @@
     <%end%>
   <%end%>
 </div>
+<% if current_user?(@user) %>
 <h3>Your Gallery (<%= @user.photos.count %>)</h3>
+<% else %>
+<h3><%=@user.name%>'s Gallery (<%= @user.photos.count %>)</h3>
+<%end%>
 <div id="photo_pane" class="span6">    
   <% if @user.photos.any? %>
     <%= will_paginate @photos %>
@@ -21,6 +25,9 @@
       <%= render @photos %>
     </ol> 
   <%end%>
+</div>
+<div style='width: 400px;'  class="span16">
+  <div id="map" style='width: 300px; height: 500px;'></div>
 </div>
 <script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyCcTQhM1RImvxwVyJCDAysJxRaeAsAJqog "></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>

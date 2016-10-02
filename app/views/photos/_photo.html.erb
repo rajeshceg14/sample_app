@@ -10,12 +10,6 @@
     <%= link_to "delete", photo, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-primary" if current_user?(photo.user)%> 
     <% exif = EXIFR::JPEG.new(photo.image.path).gps %> 
     <%= link_to "Locate", photo_map_path(:id => photo.id, :user => photo.user_id), remote: true, class: "btn btn-small btn-primary" if exif.present? %>
-    <%= link_to "Locate", photo_map_path(:id => photo.id, :user => photo.user_id), class: "btn btn-info btn-lg", remote: true, data: {toggle: "modal", target: "#map_#{photo.id}"} %>
-  </p>
+  </p>  
   <br/><br/>
-  <div style='width: 400px;'  class="span16">
-    <%= content_tag :div, "", class: "map_container", id: "map_#{photo.id}" %>
-    
-  </div>
-
 </li>
