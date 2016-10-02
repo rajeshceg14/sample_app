@@ -1,7 +1,8 @@
 SampleApp::Application.routes.draw do
 
   #get "users/new"
-  root to: 'static_pages#home'
+  #root to: 'static_pages#home'
+  root to: 'sessions#new'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :photos, only: [:create, :destroy, :map_show, :photo_delete]
