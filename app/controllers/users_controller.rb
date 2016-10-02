@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     def admin_user_func      
       puts "ADMIN USER FUNC CALLED"
       #puts #{current_user.admin_user}
-      redirect_to(root_url) #unless current_user.admin? 
+      redirect_to(root_url) unless current_user.admin? 
     end
     
     # Use strong_parameters for attribute whitelisting
