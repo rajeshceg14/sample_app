@@ -5,10 +5,8 @@
       The form contains <%= pluralize(@user.errors.count, "error") %>.
     </div>
  -->    <ul> 
-     <%debugger%>
-    <p><%=@user.errors%></p>
     <% @user.errors.full_messages.each do |msg| %>
-      <li>* <%= msg %></li>
+      <li> <%= msg  unless msg.include?"digest" %></li>
     <% end %>
     </ul>
   </div>

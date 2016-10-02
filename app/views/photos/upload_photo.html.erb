@@ -1,0 +1,12 @@
+
+<div class="row">
+  <% if current_user?(@user) %>
+    <%= form_for @photo, :html => { :multipart => true } do |f| %>    
+      <p>
+        <b> Upload Photo </b>
+        <%= f.file_field :image, as: :file, accept: 'image/png,image/gif,image/jpeg'  %>
+      </p>      
+      <%= f.submit "Upload Photo" %>
+    <%end%>
+  <%end%>
+</div>

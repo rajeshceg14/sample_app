@@ -22,6 +22,8 @@ SampleApp::Application.routes.draw do
   match 'users_index', to: 'users#index'
   match '/photo_map', to: 'photos#map_show', via: :get  
   match '/photo_delete', to: 'photos#destroy', via: :delete  
+  match '/user_edit', to: 'users#edit'
+  match '/upload_photo', to: 'photos#upload_photo'
 
 
   # The priority is based upon order of creation:

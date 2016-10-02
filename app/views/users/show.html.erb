@@ -1,17 +1,20 @@
 <% provide(:title, @user.name + " Profile") %>
-
+<%if 1==0%>
 <div class="row">
   <% if current_user?(@user) %>
     <%= form_for @photo, :html => { :multipart => true } do |f| %>    
       <p>
         <b> Upload Photo </b>
         <%= f.file_field :image, as: :file, accept: 'image/png,image/gif,image/jpeg'  %>
-      </p>
-      
-      <%= f.submit %>
+      </p>      
+      <%= f.submit "Upload Photo" %>
     <%end%>
   <%end%>
 </div>
+<%else%>
+ <%= link_to "Upload Photo", upload_photo_path(:user => @user.id), class: "btn btn-small btn-primary" if current_user?(@user)  %> 
+<%end%>
+
 <% if current_user?(@user) %>
 <h3>Your Gallery (<%= @user.photos.count %>)</h3>
 <% else %>

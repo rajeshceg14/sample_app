@@ -12,7 +12,8 @@ class PhotosController < ApplicationController
     puts "PARAMS PHOTO = #{params[:photo]}"
     if params[:photo].blank?
        flash[:notice] = "Photo not selected. Please select a photo"      
-       redirect_to current_user
+       #redirect_to current_user
+       redirect_to upload_photo_path(:user => current_user)
     else
       @photo.image = params[:photo][:image]
       if @photo.save
@@ -20,7 +21,6 @@ class PhotosController < ApplicationController
         redirect_to current_user
       else        
         puts " UPLOAD FAILED  #{@photo.errors.full_messages}  img content type = #{@photo.errors[:image_content_type]}"        
-        debugger
         if !@photo.errors[:image_content_type].blank?
           flash[:notice] = "Plz upload image"
         elsif !@photo.errors[:image_file_size].blank?
@@ -28,7 +28,8 @@ class PhotosController < ApplicationController
         else
           flash[:notice] = "Photo upload failed"          
         end
-        redirect_to current_user
+        #redirect_to current_user
+        redirect_to upload_photo_path(:user => current_user)
       end 
     end
   end
@@ -42,6 +43,10 @@ class PhotosController < ApplicationController
       puts "#{@lat}    #{@long}"
   end
 
+  def upload_photo
+      @user  = User.find( params[:user])
+      @photo = @user.photos.new      
+  end
 
   def photo_delete
     @user = User.find(params[:user])
