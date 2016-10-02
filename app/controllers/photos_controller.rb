@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
   end
 
   def map_show      
-      @user  = User.find(params[:user])
+      @user  = User.find( params[:user])
       @photo = @user.photos.find(params[:id])
       @exif  = EXIFR::JPEG.new(@photo.image.path).gps        
       @lat   = @exif.latitude
@@ -42,10 +42,19 @@ class PhotosController < ApplicationController
       puts "#{@lat}    #{@long}"
   end
 
-  def destroy
-  #debugger
-  @photo = current_user.photos.find(params[:id])
-  @photo.destroy
-  redirect_to current_user
+
+  def photo_delete
+    @user = User.find(params[:user])
+    @photo = @user.photos.find(params[:id])
+    @photo.destroy(:user => @photo.user_id, :id => @photo.id)
+    redirect_to @user
+  end
+
+
+  def destroy 
+    @user = User.find(params[:user])
+    @photo = @user.photos.find(params[:id])
+    @photo.destroy
+    redirect_to @user
   end
 end

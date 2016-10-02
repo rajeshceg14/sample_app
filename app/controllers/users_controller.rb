@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def index
     #@users = User.all
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -96,7 +96,8 @@ class UsersController < ApplicationController
       #puts #{current_user.admin_user}
       redirect_to(root_url) unless current_user.admin? 
     end
-    
+
+
     # Use strong_parameters for attribute whitelisting
     # Be sure to update your create() and update() controller methods.
     def user_params

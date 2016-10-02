@@ -7,7 +7,8 @@
     <p>Uploaded <%=time_ago_in_words(photo.created_at) %> ago.</p>
   </span>
   <p>
-    <%= link_to "delete", photo, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-primary" if current_user?(photo.user)%> 
+    <%= link_to "delete", photo_delete_path(:id => photo.id, :user => photo.user_id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-primary" if current_user?(photo.user) || current_user.admin? %> 
+
     <% exif = EXIFR::JPEG.new(photo.image.path).gps %> 
     <%= link_to "Locate", photo_map_path(:id => photo.id, :user => photo.user_id), remote: true, class: "btn btn-small btn-primary" if exif.present? %>
   </p>  
