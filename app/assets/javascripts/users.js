@@ -4,7 +4,7 @@ function initMap(lat, lng) {
 
 	var mapOptions = {
 	  center: new google.maps.LatLng(12.96,80.244),
-	  zoom: 0
+	  zoom: 8
 	};
 
 	handler = Gmaps.build('Google');

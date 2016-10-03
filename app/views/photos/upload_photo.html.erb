@@ -1,4 +1,4 @@
-
+<% provide(:title, @user.name + " Upload photo") %>
 <div class="row">
   <% if current_user?(@user) %>
     <%= form_for @photo, :html => { :multipart => true } do |f| %>    
@@ -6,7 +6,7 @@
         <b> Upload Photo </b>
         <%= f.file_field :image, as: :file, accept: 'image/png,image/gif,image/jpeg'  %>
       </p>      
-      <%= f.submit "Upload Photo" %>
+      <%= f.submit "Upload Photo", class: "btn btn-small btn-primary" %>
     <%end%>
   <%end%>
 </div>

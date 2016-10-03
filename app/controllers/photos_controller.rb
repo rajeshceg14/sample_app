@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
     else
       @photo.image = params[:photo][:image]
       if @photo.save
-        flash[:notice] = "Photo upload success!"      
+        flash[:success] = "Photo upload success!"      
         redirect_to current_user
       else        
         puts " UPLOAD FAILED  #{@photo.errors.full_messages}  img content type = #{@photo.errors[:image_content_type]}"        
