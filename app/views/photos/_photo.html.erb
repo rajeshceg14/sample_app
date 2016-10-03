@@ -11,7 +11,7 @@
 
     <% exif = EXIFR::JPEG.new(photo.image.path).gps %> 
     <%= link_to "Locate", photo_map_path(:id => photo.id, :user => photo.user_id), remote: true, class: "btn btn-small btn-primary" if exif.present? %>
-    <p> lat = <%=exif.latitude%> long <%=exif.longitude%></p>
+    
   </p>  
   <br/><br/>
 </li>
